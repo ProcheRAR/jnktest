@@ -21,7 +21,7 @@ spec:
     # --- НАШ НОВЫЙ КОНТЕЙНЕР ДЛЯ KUBECTL ---
     # Контейнер №2: kubectl
     - name: kubectl
-      image: lachlanevenson/k8s-kubectl:v1.28.2
+      image: bitnami/kubectl:1.28
       command: ['sleep']
       args: ['99d']
       tty: true
