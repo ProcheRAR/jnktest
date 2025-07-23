@@ -21,7 +21,7 @@ spec:
     # --- НАШ НОВЫЙ КОНТЕЙНЕР ДЛЯ KUBECTL ---
     # Контейнер №2: kubectl
     - name: kubectl
-      image: bitnami/kubectl:1.28
+      image: bitnami/kubectl:latest
       command: ['sleep']
       args: ['99d']
       tty: true
