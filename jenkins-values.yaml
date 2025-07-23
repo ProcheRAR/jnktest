@@ -4,22 +4,14 @@ controller:
   serviceType: NodePort
   nodePort: 32000
   
-  # --- ИЗМЕНЯЕМ ЭТОТ БЛОК ---
-  # Старые значения были 500m CPU и 512Mi/1Gi памяти
   resources:
     requests:
-      # Запрашиваем 1 ядро CPU
       cpu: "1000m"
-      # Запрашиваем 2 Гибибайта памяти
       memory: "2Gi"
     limits:
-      # Разрешаем использовать до 2 ядер CPU
       cpu: "2000m"
-      # Устанавливаем жесткий лимит в 4 Гибибайта памяти
       memory: "4Gi"
-  # -------------------------
-
-  # Наш блок для доступа к Docker оставляем без изменений
+  
   volumes:
     - name: docker-socket
       hostPath:

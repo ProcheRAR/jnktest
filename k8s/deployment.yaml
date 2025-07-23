@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-devops-app-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-devops-app
+  template:
+    metadata:
+      labels:
+        app: my-devops-app
+    spec:
+      containers:
+        - name: my-devops-app-container
+          # !!! ВАЖНО: Указываем полный путь к образу, который вы загрузили в Docker Hub
+          # Замените 'procherar' на ваш логин в Docker Hub!
+          image: procherar/my-devops-app:latest
+          ports:
+            - containerPort: 5000
+
+---
+# --- Объект Service ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-devops-app-service
+spec:
+  # Тип NodePort делает приложение доступным на порту КАЖДОГО узла кластера.
+  type: NodePort
+  ports:
+    # Внешний порт, который откроется на вашем сервере.
+    # Вы можете выбрать любой свободный порт в диапазоне 30000-32767.
+    - nodePort: 30007
+      # Внутренний порт самого сервиса (может быть любым).
+      port: 80
+      # Порт контейнера, на который нужно перенаправлять трафик.
+      targetPort: 5000
+  # Этот селектор говорит сервису, на какие поды отправлять трафик.
+  # 'app: my-devops-app' должен совпадать с меткой подов из нашего Deployment.
+  selector:
+    app: my-devops-app
