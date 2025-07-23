@@ -21,7 +21,7 @@ spec:
     # --- НАШ НОВЫЙ КОНТЕЙНЕР ДЛЯ KUBECTL ---
     # Контейнер №2: kubectl
     - name: kubectl
-      image: alpine/k8s:latest
+      image: alpine/k8s:1.31.11
       command: ['sleep']
       args: ['99d']
       tty: true
